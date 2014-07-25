@@ -1,0 +1,648 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B198470194F8FF50033933C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAC3EF01931AAAD00BAB8AA /* Foundation.framework */; };
+		3B198471194F8FF50033933C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAC3EF21931AAAD00BAB8AA /* UIKit.framework */; };
+		3B19847C194F8FF50033933C /* OkSiri.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B19847B194F8FF50033933C /* OkSiri.mm */; };
+		3B198488194F901C0033933C /* libflipswitch.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B198487194F901C0033933C /* libflipswitch.dylib */; };
+		3BAC3EF11931AAAD00BAB8AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAC3EF01931AAAD00BAB8AA /* Foundation.framework */; };
+		3BAC3F021931AAAD00BAB8AA /* OkSiri.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAC3F011931AAAD00BAB8AA /* OkSiri.m */; };
+		3BAC3F181931AB1100BAB8AA /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAC3F161931AB1100BAB8AA /* OpenEars.framework */; };
+		3BAC3F191931AB1100BAB8AA /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAC3F171931AB1100BAB8AA /* Slt.framework */; };
+		3BAC3F1B1931AB3D00BAB8AA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAC3F1A1931AB3C00BAB8AA /* AudioToolbox.framework */; };
+		3BAC3F1D1931AB4100BAB8AA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAC3F1C1931AB4100BAB8AA /* AVFoundation.framework */; };
+		3BAC3F221931E0FC00BAB8AA /* LSStatusBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAC3F211931E0FC00BAB8AA /* LSStatusBarItem.h */; };
+		3BAC3F2C1931E48200BAB8AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAC3EF21931AAAD00BAB8AA /* UIKit.framework */; };
+		3BBDBB7819635402008F3C99 /* libsubstrate.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBDBB7719635402008F3C99 /* libsubstrate.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3B19846F194F8FF50033933C /* OkSiriFlipswitch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = OkSiriFlipswitch; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B198475194F8FF50033933C /* control.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = control.txt; path = Package/DEBIAN/control.txt; sourceTree = "<group>"; };
+		3B198476194F8FF50033933C /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
+		3B198478194F8FF50033933C /* PackageVersion.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PackageVersion.plist; sourceTree = "<group>"; };
+		3B198479194F8FF50033933C /* OkSiriFlipswitch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OkSiriFlipswitch-Prefix.pch"; sourceTree = "<group>"; };
+		3B19847A194F8FF50033933C /* OkSiri.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = OkSiri.xm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		3B19847B194F8FF50033933C /* OkSiri.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OkSiri.mm; sourceTree = "<group>"; };
+		3B198481194F8FF50033933C /* FSSwitchDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSwitchDataSource.h; sourceTree = "<group>"; };
+		3B198482194F8FF50033933C /* FSSwitchPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSwitchPanel.h; sourceTree = "<group>"; };
+		3B198483194F8FF50033933C /* FSSwitchState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSwitchState.h; sourceTree = "<group>"; };
+		3B198487194F901C0033933C /* libflipswitch.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libflipswitch.dylib; path = ../../../../../opt/iOSOpenDev/lib/libflipswitch.dylib; sourceTree = "<group>"; };
+		3B42346A1973347D007BFD4C /* OkSiriFlipswitch.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = OkSiriFlipswitch.bundle; sourceTree = "<group>"; };
+		3B7820DB19595DB6007058A3 /* OkSiriFlipswitch.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = OkSiriFlipswitch.bundle; sourceTree = "<group>"; };
+		3BAC3EED1931AAAD00BAB8AA /* OkSiri.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = OkSiri.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BAC3EF01931AAAD00BAB8AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3BAC3EF21931AAAD00BAB8AA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3BAC3EF81931AAAD00BAB8AA /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
+		3BAC3EFA1931AAAD00BAB8AA /* PackageVersion.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PackageVersion.plist; sourceTree = "<group>"; };
+		3BAC3EFE1931AAAD00BAB8AA /* OkSiri.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = OkSiri.plist; path = Package/Library/PreferenceLoader/Preferences/OkSiri.plist; sourceTree = "<group>"; };
+		3BAC3EFF1931AAAD00BAB8AA /* OkSiriIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = OkSiriIcon.png; path = Package/Library/PreferenceLoader/Preferences/OkSiriIcon.png; sourceTree = "<group>"; };
+		3BAC3F001931AAAD00BAB8AA /* OkSiriIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "OkSiriIcon@2x.png"; path = "Package/Library/PreferenceLoader/Preferences/OkSiriIcon@2x.png"; sourceTree = "<group>"; };
+		3BAC3F011931AAAD00BAB8AA /* OkSiri.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OkSiri.m; sourceTree = "<group>"; };
+		3BAC3F051931AAAD00BAB8AA /* OkSiri.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = OkSiri.plist; path = Package/Library/MobileSubstrate/DynamicLibraries/OkSiri.plist; sourceTree = "<group>"; };
+		3BAC3F111931AAC600BAB8AA /* libactivator.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libactivator.dylib; path = ../../../../../opt/iOSOpenDev/lib/libactivator.dylib; sourceTree = "<group>"; };
+		3BAC3F141931AB1100BAB8AA /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
+		3BAC3F151931AB1100BAB8AA /* AcousticModelSpanish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelSpanish.bundle; sourceTree = "<group>"; };
+		3BAC3F161931AB1100BAB8AA /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
+		3BAC3F171931AB1100BAB8AA /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
+		3BAC3F1A1931AB3C00BAB8AA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		3BAC3F1C1931AB4100BAB8AA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3BAC3F201931B1A600BAB8AA /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
+		3BAC3F211931E0FC00BAB8AA /* LSStatusBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStatusBarItem.h; sourceTree = "<group>"; };
+		3BBDBB7719635402008F3C99 /* libsubstrate.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsubstrate.dylib; path = ../../../../../opt/iOSOpenDev/lib/libsubstrate.dylib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B19846B194F8FF50033933C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B198488194F901C0033933C /* libflipswitch.dylib in Frameworks */,
+				3B198470194F8FF50033933C /* Foundation.framework in Frameworks */,
+				3B198471194F8FF50033933C /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BAC3EE91931AAAD00BAB8AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BBDBB7819635402008F3C99 /* libsubstrate.dylib in Frameworks */,
+				3BAC3F1D1931AB4100BAB8AA /* AVFoundation.framework in Frameworks */,
+				3BAC3F1B1931AB3D00BAB8AA /* AudioToolbox.framework in Frameworks */,
+				3BAC3F191931AB1100BAB8AA /* Slt.framework in Frameworks */,
+				3BAC3EF11931AAAD00BAB8AA /* Foundation.framework in Frameworks */,
+				3BAC3F2C1931E48200BAB8AA /* UIKit.framework in Frameworks */,
+				3BAC3F181931AB1100BAB8AA /* OpenEars.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3B198472194F8FF50033933C /* OkSiriFlipswitch */ = {
+			isa = PBXGroup;
+			children = (
+				3B19847A194F8FF50033933C /* OkSiri.xm */,
+				3B19847B194F8FF50033933C /* OkSiri.mm */,
+				3B198481194F8FF50033933C /* FSSwitchDataSource.h */,
+				3B198482194F8FF50033933C /* FSSwitchPanel.h */,
+				3B198483194F8FF50033933C /* FSSwitchState.h */,
+				3B198473194F8FF50033933C /* Package */,
+				3B198477194F8FF50033933C /* Supporting Files */,
+			);
+			path = OkSiriFlipswitch;
+			sourceTree = "<group>";
+		};
+		3B198473194F8FF50033933C /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				3B198474194F8FF50033933C /* DEBIAN */,
+				3B19847D194F8FF50033933C /* Library */,
+			);
+			name = Package;
+			sourceTree = "<group>";
+		};
+		3B198474194F8FF50033933C /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				3B198475194F8FF50033933C /* control.txt */,
+				3B198476194F8FF50033933C /* control */,
+			);
+			name = DEBIAN;
+			sourceTree = "<group>";
+		};
+		3B198477194F8FF50033933C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3B198478194F8FF50033933C /* PackageVersion.plist */,
+				3B198479194F8FF50033933C /* OkSiriFlipswitch-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3B19847D194F8FF50033933C /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				3B30A0E319528ED1007562C0 /* Switches */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		3B30A0E319528ED1007562C0 /* Switches */ = {
+			isa = PBXGroup;
+			children = (
+				3B7820DB19595DB6007058A3 /* OkSiriFlipswitch.bundle */,
+			);
+			name = Switches;
+			path = Package/Library/Switches;
+			sourceTree = "<group>";
+		};
+		3B4234691973347D007BFD4C /* Switches */ = {
+			isa = PBXGroup;
+			children = (
+				3B42346A1973347D007BFD4C /* OkSiriFlipswitch.bundle */,
+			);
+			name = Switches;
+			path = Package/Library/Switches;
+			sourceTree = "<group>";
+		};
+		3BAC3EE31931AAAD00BAB8AA = {
+			isa = PBXGroup;
+			children = (
+				3BAC3EF41931AAAD00BAB8AA /* OkSiri */,
+				3B198472194F8FF50033933C /* OkSiriFlipswitch */,
+				3BAC3EEF1931AAAD00BAB8AA /* Frameworks */,
+				3BAC3EEE1931AAAD00BAB8AA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3BAC3EEE1931AAAD00BAB8AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC3EED1931AAAD00BAB8AA /* OkSiri.dylib */,
+				3B19846F194F8FF50033933C /* OkSiriFlipswitch */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3BAC3EEF1931AAAD00BAB8AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3BBDBB7719635402008F3C99 /* libsubstrate.dylib */,
+				3B198487194F901C0033933C /* libflipswitch.dylib */,
+				3BAC3F1C1931AB4100BAB8AA /* AVFoundation.framework */,
+				3BAC3F1A1931AB3C00BAB8AA /* AudioToolbox.framework */,
+				3BAC3F111931AAC600BAB8AA /* libactivator.dylib */,
+				3BAC3EF01931AAAD00BAB8AA /* Foundation.framework */,
+				3BAC3EF21931AAAD00BAB8AA /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3BAC3EF41931AAAD00BAB8AA /* OkSiri */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC3F011931AAAD00BAB8AA /* OkSiri.m */,
+				3BAC3F211931E0FC00BAB8AA /* LSStatusBarItem.h */,
+				3BAC3EF51931AAAD00BAB8AA /* Package */,
+				3BAC3EF91931AAAD00BAB8AA /* Supporting Files */,
+				3BAC3F131931AB1100BAB8AA /* Framework */,
+			);
+			path = OkSiri;
+			sourceTree = "<group>";
+		};
+		3BAC3EF51931AAAD00BAB8AA /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC3EF61931AAAD00BAB8AA /* DEBIAN */,
+				3BAC3EFB1931AAAD00BAB8AA /* Library */,
+			);
+			name = Package;
+			sourceTree = "<group>";
+		};
+		3BAC3EF61931AAAD00BAB8AA /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC3EF81931AAAD00BAB8AA /* control */,
+			);
+			name = DEBIAN;
+			sourceTree = "<group>";
+		};
+		3BAC3EF91931AAAD00BAB8AA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC3EFA1931AAAD00BAB8AA /* PackageVersion.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3BAC3EFB1931AAAD00BAB8AA /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				3B4234691973347D007BFD4C /* Switches */,
+				3BAC3F1F1931B1A600BAB8AA /* OpenEars */,
+				3BAC3EFC1931AAAD00BAB8AA /* PreferenceLoader */,
+				3BAC3F031931AAAD00BAB8AA /* MobileSubstrate */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		3BAC3EFC1931AAAD00BAB8AA /* PreferenceLoader */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC3EFD1931AAAD00BAB8AA /* Preferences */,
+			);
+			name = PreferenceLoader;
+			sourceTree = "<group>";
+		};
+		3BAC3EFD1931AAAD00BAB8AA /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC3EFE1931AAAD00BAB8AA /* OkSiri.plist */,
+				3BAC3EFF1931AAAD00BAB8AA /* OkSiriIcon.png */,
+				3BAC3F001931AAAD00BAB8AA /* OkSiriIcon@2x.png */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
+		3BAC3F031931AAAD00BAB8AA /* MobileSubstrate */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC3F041931AAAD00BAB8AA /* DynamicLibraries */,
+			);
+			name = MobileSubstrate;
+			sourceTree = "<group>";
+		};
+		3BAC3F041931AAAD00BAB8AA /* DynamicLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC3F051931AAAD00BAB8AA /* OkSiri.plist */,
+			);
+			name = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+		3BAC3F131931AB1100BAB8AA /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC3F141931AB1100BAB8AA /* AcousticModelEnglish.bundle */,
+				3BAC3F151931AB1100BAB8AA /* AcousticModelSpanish.bundle */,
+				3BAC3F161931AB1100BAB8AA /* OpenEars.framework */,
+				3BAC3F171931AB1100BAB8AA /* Slt.framework */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
+		3BAC3F1F1931B1A600BAB8AA /* OpenEars */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC3F201931B1A600BAB8AA /* AcousticModelEnglish.bundle */,
+			);
+			name = OpenEars;
+			path = Package/Library/OpenEars;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3B19846C194F8FF50033933C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BAC3EEA1931AAAD00BAB8AA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BAC3F221931E0FC00BAB8AA /* LSStatusBarItem.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3B19846E194F8FF50033933C /* OkSiriFlipswitch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B198486194F8FF50033933C /* Build configuration list for PBXNativeTarget "OkSiriFlipswitch" */;
+			buildPhases = (
+				3B198469194F8FF50033933C /* ShellScript */,
+				3B19846A194F8FF50033933C /* Sources */,
+				3B19846B194F8FF50033933C /* Frameworks */,
+				3B19846C194F8FF50033933C /* Headers */,
+				3B19846D194F8FF50033933C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OkSiriFlipswitch;
+			productName = OkSiriFlipswitch;
+			productReference = 3B19846F194F8FF50033933C /* OkSiriFlipswitch */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		3BAC3EEC1931AAAD00BAB8AA /* OkSiri */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BAC3F0E1931AAAD00BAB8AA /* Build configuration list for PBXNativeTarget "OkSiri" */;
+			buildPhases = (
+				3BAC3EE81931AAAD00BAB8AA /* Sources */,
+				3BAC3EE91931AAAD00BAB8AA /* Frameworks */,
+				3BAC3EEA1931AAAD00BAB8AA /* Headers */,
+				3BAC3EEB1931AAAD00BAB8AA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OkSiri;
+			productName = OkSiri;
+			productReference = 3BAC3EED1931AAAD00BAB8AA /* OkSiri.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3BAC3EE41931AAAD00BAB8AA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = 3BAC3EE71931AAAD00BAB8AA /* Build configuration list for PBXProject "OkSiri" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3BAC3EE31931AAAD00BAB8AA;
+			productRefGroup = 3BAC3EEE1931AAAD00BAB8AA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3BAC3EEC1931AAAD00BAB8AA /* OkSiri */,
+				3B19846E194F8FF50033933C /* OkSiriFlipswitch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3B198469194F8FF50033933C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/iOSOpenDev/bin/iosod --xcbp-logos";
+		};
+		3B19846D194F8FF50033933C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/iOSOpenDev/bin/iosod --xcbp";
+		};
+		3BAC3EEB1931AAAD00BAB8AA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/iOSOpenDev/bin/iosod --xcbp";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3B19846A194F8FF50033933C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B19847C194F8FF50033933C /* OkSiri.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BAC3EE81931AAAD00BAB8AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BAC3F021931AAAD00BAB8AA /* OkSiri.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3B198484194F8FF50033933C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				EXECUTABLE_EXTENSION = "";
+				EXECUTABLE_NAME = OkSiriFlipswitch;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/frameworks/**",
+					"$(SDKROOT)/System/Library/PrivateFrameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OkSiriFlipswitch/OkSiriFlipswitch-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
+				INSTALL_PATH = /Library/Switches/OkSiriFlipswitch.bundle/;
+				LIBRARY_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/lib/**",
+					/opt/iOSOpenDev/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				iOSOpenDevBuildPackageOnAnyBuild = NO;
+				iOSOpenDevCopyOnBuild = NO;
+				iOSOpenDevDevice = "";
+				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevInstallOnProfiling = YES;
+				iOSOpenDevPath = /opt/iOSOpenDev;
+				iOSOpenDevRespringOnInstall = YES;
+				iOSOpenDevUsePackageVersionPList = YES;
+			};
+			name = Debug;
+		};
+		3B198485194F8FF50033933C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				EXECUTABLE_EXTENSION = "";
+				EXECUTABLE_NAME = OkSiriFlipswitch;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/frameworks/**",
+					"$(SDKROOT)/System/Library/PrivateFrameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OkSiriFlipswitch/OkSiriFlipswitch-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
+				INSTALL_PATH = /Library/Switches/OkSiriFlipswitch.bundle/;
+				LIBRARY_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/lib/**",
+					/opt/iOSOpenDev/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				iOSOpenDevBuildPackageOnAnyBuild = NO;
+				iOSOpenDevCopyOnBuild = NO;
+				iOSOpenDevDevice = "";
+				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevInstallOnProfiling = YES;
+				iOSOpenDevPath = /opt/iOSOpenDev;
+				iOSOpenDevRespringOnInstall = YES;
+				iOSOpenDevUsePackageVersionPList = YES;
+			};
+			name = Release;
+		};
+		3BAC3F0C1931AAAD00BAB8AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/frameworks/**",
+					"$(SDKROOT)/System/Library/PrivateFrameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = "$(iOSOpenDevPath)/lib/**";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+				iOSOpenDevPath = /opt/iOSOpenDev;
+			};
+			name = Debug;
+		};
+		3BAC3F0D1931AAAD00BAB8AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/frameworks/**",
+					"$(SDKROOT)/System/Library/PrivateFrameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = "$(iOSOpenDevPath)/lib/**";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				iOSOpenDevPath = /opt/iOSOpenDev;
+			};
+			name = Release;
+		};
+		3BAC3F0F1931AAAD00BAB8AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OkSiri/Framework",
+				);
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/iOSOpenDev/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				iOSOpenDevBuildPackageOnAnyBuild = NO;
+				iOSOpenDevCopyOnBuild = NO;
+				iOSOpenDevDevice = "";
+				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevInstallOnProfiling = YES;
+				iOSOpenDevRespringOnInstall = YES;
+				iOSOpenDevUsePackageVersionPList = YES;
+			};
+			name = Debug;
+		};
+		3BAC3F101931AAAD00BAB8AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OkSiri/Framework",
+				);
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/iOSOpenDev/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				iOSOpenDevBuildPackageOnAnyBuild = NO;
+				iOSOpenDevCopyOnBuild = NO;
+				iOSOpenDevDevice = "";
+				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevInstallOnProfiling = YES;
+				iOSOpenDevRespringOnInstall = YES;
+				iOSOpenDevUsePackageVersionPList = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B198486194F8FF50033933C /* Build configuration list for PBXNativeTarget "OkSiriFlipswitch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B198484194F8FF50033933C /* Debug */,
+				3B198485194F8FF50033933C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BAC3EE71931AAAD00BAB8AA /* Build configuration list for PBXProject "OkSiri" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BAC3F0C1931AAAD00BAB8AA /* Debug */,
+				3BAC3F0D1931AAAD00BAB8AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BAC3F0E1931AAAD00BAB8AA /* Build configuration list for PBXNativeTarget "OkSiri" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BAC3F0F1931AAAD00BAB8AA /* Debug */,
+				3BAC3F101931AAAD00BAB8AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3BAC3EE41931AAAD00BAB8AA /* Project object */;
+}

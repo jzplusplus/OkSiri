@@ -1,0 +1,17 @@
+Package: jzplusplus.OkSiriFlipswitch
+Name: OkSiriFlipswitch
+Version: 1.0-1
+Description: 
+Section: Addons (Flipswitch)
+Depends: firmware (>= 5.0), mobilesubstrate, com.a3tweaks.flipswitch
+Conflicts: 
+Replaces: 
+Priority: optional
+Architecture: iphoneos-arm
+Author: Jay Zuerndorfer
+dev: 
+Homepage: 
+Depiction: 
+Maintainer: 
+Icon: 
+

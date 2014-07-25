@@ -6,6 +6,7 @@ OkSiri is an iOS jailbreak tweak that enables always-on keyword listening (simil
 Stable version available on BigBoss repo here: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=oksiriDp
 
 You can also add my beta repo to Cydia: http://jzplusplus.github.io/
-WARNING: beta version has known issues.
+
+[WARNING: beta version has known issues.](https://github.com/jzplusplus/OkSiri/issues)
 
 Licensed under GPL v2.

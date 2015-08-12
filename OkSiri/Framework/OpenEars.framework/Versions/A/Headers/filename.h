@@ -62,8 +62,8 @@
 #define _LIBUTIL_FILENAME_H_
 
 /* Win32/WinCE DLL gunk */
-#include "sphinxbase_export.h"
-#include "prim_type.h"
+#include <sphinxbase/sphinxbase_export.h>
+#include <sphinxbase/prim_type.h>
 
 /**\file filename.h
  *\brief File names related operation
@@ -77,11 +77,10 @@ extern "C" {
 #endif
 
 /**
- * Strip off leading path components from the given path and copy the base into base.
- * Caller must have allocated base (hint: it's always shorter than path).
+ * Returns the last part of the path, without modifying anything in memory.
  */
 SPHINXBASE_EXPORT
-void path2basename(const char *path, char *base);
+const char *path2basename(const char *path);
 
 /**
  * Strip off filename from the given path and copy the directory name into dir

@@ -84,8 +84,8 @@
 
 #include <stdlib.h>
 /* Win32/WinCE DLL gunk */
-#include "sphinxbase_export.h"
-#include "prim_type.h"
+#include <sphinxbase/sphinxbase_export.h>
+#include <sphinxbase/prim_type.h>
 
 #ifdef __cplusplus
 extern "C" {

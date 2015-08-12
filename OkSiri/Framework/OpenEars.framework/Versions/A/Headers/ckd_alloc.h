@@ -8,27 +8,27 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
  *    the documentation and/or other materials provided with the
  *    distribution.
  *
- * This work was supported in part by funding from the Defense Advanced 
- * Research Projects Agency and the National Science Foundation of the 
+ * This work was supported in part by funding from the Defense Advanced
+ * Research Projects Agency and the National Science Foundation of the
  * United States of America, and the CMU Sphinx Speech Consortium.
  *
- * THIS SOFTWARE IS PROVIDED BY CARNEGIE MELLON UNIVERSITY ``AS IS'' AND 
- * ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
+ * THIS SOFTWARE IS PROVIDED BY CARNEGIE MELLON UNIVERSITY ``AS IS'' AND
+ * ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL CARNEGIE MELLON UNIVERSITY
  * NOR ITS EMPLOYEES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * ====================================================================
@@ -43,7 +43,7 @@
  * Copyright (c) 1999 Carnegie Mellon University.
  * ALL RIGHTS RESERVED.
  * **********************************************
- * 
+ *
  * HISTORY
  * $Log: ckd_alloc.h,v $
  * Revision 1.10  2005/06/22 02:59:25  arthchan2003
@@ -52,10 +52,10 @@
  * Revision 1.3  2005/03/30 01:22:48  archan
  * Fixed mistakes in last updates. Add
  *
- * 
+ *
  * 19-Jun-97	M K Ravishankar (rkm@cs.cmu.edu) at Carnegie Mellon University
  * 		Removed file,line arguments from free functions.
- * 
+ *
  * 01-Jan-96	M K Ravishankar (rkm@cs.cmu.edu) at Carnegie Mellon University
  * 		Created.
  */
@@ -73,13 +73,13 @@
  *********************************************************************
  *
  * file: ckd_alloc.h
- * 
- * traceability: 
- * 
- * description: 
- * 
- * author: 
- * 
+ *
+ * traceability:
+ *
+ * description:
+ *
+ * author:
+ *
  *********************************************************************/
 
 
@@ -90,15 +90,15 @@
 #include <setjmp.h>
 
 /* Win32/WinCE DLL gunk */
-#include "sphinxbase_export.h"
-#include "prim_type.h"
-#include "err.h"
+#include <sphinxbase/sphinxbase_export.h>
+#include <sphinxbase/prim_type.h>
+
 /** \file ckd_alloc.h
- *\brief Sphinx's memory allocation/deallocation routines. 
- * 
+ *\brief Sphinx's memory allocation/deallocation routines.
+ *
  *Implementation of efficient memory allocation deallocation for
  *multiple dimensional arrays.
- * 
+ *
  */
 
 #ifdef __cplusplus
@@ -152,8 +152,8 @@ void *__ckd_realloc__(void *ptr, size_t new_size,
 		      const char *caller_file, int caller_line);
 
 /**
- * Like strdup, except that if an error occurs it prints a diagnostic message
- * and exits.
+ * Like strdup, except that if an error occurs it prints a diagnostic message and
+ * exits. If origin in NULL the function also returns NULL.
  */
 SPHINXBASE_EXPORT
 char *__ckd_salloc__(const char *origstr,
@@ -214,25 +214,25 @@ void *__ckd_alloc_2d_ptr(size_t d1,
                          int caller_line);
 
 /**
- * Test and free a 1-D array 
+ * Test and free a 1-D array
  */
 SPHINXBASE_EXPORT
 void ckd_free(void *ptr);
 
 /**
- * Free a 2-D array (ptr) previously allocated by ckd_calloc_2d 
+ * Free a 2-D array (ptr) previously allocated by ckd_calloc_2d
  */
 SPHINXBASE_EXPORT
 void ckd_free_2d(void *ptr);
 
-/** 
- * Free a 3-D array (ptr) previously allocated by ckd_calloc_3d 
+/**
+ * Free a 3-D array (ptr) previously allocated by ckd_calloc_3d
  */
 SPHINXBASE_EXPORT
 void ckd_free_3d(void *ptr);
 
-/** 
- * Free a 4-D array (ptr) previously allocated by ckd_calloc_4d 
+/**
+ * Free a 4-D array (ptr) previously allocated by ckd_calloc_4d
  */
 SPHINXBASE_EXPORT
 void ckd_free_4d(void *ptr);
@@ -245,46 +245,46 @@ void ckd_free_4d(void *ptr);
 /**
  * Macro for __ckd_calloc__
  */
-#define ckd_calloc(n,sz)	__ckd_calloc__((n),(sz),OEFILEMACRO,OELINEMACRO)
+#define ckd_calloc(n,sz)	__ckd_calloc__((n),(sz),__FILE__,__LINE__)
 
 /**
  * Macro for __ckd_malloc__
  */
-#define ckd_malloc(sz)		__ckd_malloc__((sz),OEFILEMACRO,OELINEMACRO)
+#define ckd_malloc(sz)		__ckd_malloc__((sz),__FILE__,__LINE__)
 
 /**
  * Macro for __ckd_realloc__
  */
-#define ckd_realloc(ptr,sz)	__ckd_realloc__(ptr,(sz),OEFILEMACRO,OELINEMACRO)
+#define ckd_realloc(ptr,sz)	__ckd_realloc__(ptr,(sz),__FILE__,__LINE__)
 
 /**
  * Macro for __ckd_salloc__
  */
 
-#define ckd_salloc(ptr)		__ckd_salloc__(ptr,OEFILEMACRO,OELINEMACRO)
+#define ckd_salloc(ptr)		__ckd_salloc__(ptr,__FILE__,__LINE__)
 
 /**
  * Macro for __ckd_calloc_2d__
  */
 
-#define ckd_calloc_2d(d1,d2,sz)	__ckd_calloc_2d__((d1),(d2),(sz),OEFILEMACRO,OELINEMACRO)
+#define ckd_calloc_2d(d1,d2,sz)	__ckd_calloc_2d__((d1),(d2),(sz),__FILE__,__LINE__)
 
 /**
  * Macro for __ckd_calloc_3d__
  */
 
-#define ckd_calloc_3d(d1,d2,d3,sz) __ckd_calloc_3d__((d1),(d2),(d3),(sz),OEFILEMACRO,OELINEMACRO)
+#define ckd_calloc_3d(d1,d2,d3,sz) __ckd_calloc_3d__((d1),(d2),(d3),(sz),__FILE__,__LINE__)
 
 /**
  * Macro for __ckd_calloc_4d__
  */
-#define ckd_calloc_4d(d1, d2, d3, d4, s)  __ckd_calloc_4d__((d1), (d2), (d3), (d4), (s), OEFILEMACRO, OELINEMACRO)
+#define ckd_calloc_4d(d1, d2, d3, d4, s)  __ckd_calloc_4d__((d1), (d2), (d3), (d4), (s), __FILE__, __LINE__)
 
 /**
  * Macro for __ckd_alloc_2d_ptr__
  */
 
-#define ckd_alloc_2d_ptr(d1, d2, bf, sz)    __ckd_alloc_2d_ptr((d1), (d2), (bf), (sz), OEFILEMACRO, OELINEMACRO)
+#define ckd_alloc_2d_ptr(d1, d2, bf, sz)    __ckd_alloc_2d_ptr((d1), (d2), (bf), (sz), __FILE__, __LINE__)
 
 /**
  * Free only the pointer arrays allocated with ckd_alloc_2d_ptr().
@@ -295,7 +295,7 @@ void ckd_free_4d(void *ptr);
  * Macro for __ckd_alloc_3d_ptr__
  */
 
-#define ckd_alloc_3d_ptr(d1, d2, d3, bf, sz) __ckd_alloc_3d_ptr((d1), (d2), (d3), (bf), (sz), OEFILEMACRO, OELINEMACRO)
+#define ckd_alloc_3d_ptr(d1, d2, d3, bf, sz) __ckd_alloc_3d_ptr((d1), (d2), (d3), (bf), (sz), __FILE__, __LINE__)
 
 /**
  * Free only the pointer arrays allocated with ckd_alloc_3d_ptr().

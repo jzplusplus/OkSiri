@@ -42,15 +42,20 @@
  * @file jsgf_internal.h Internal definitions for JSGF grammar compiler
  */
 
-#define YY_NO_UNISTD_H 1
 #include <stdio.h>
 
-#include "hash_table.h"
-#include "glist.h"
-#include "fsg_model.h"
-#include "logmath.h"
-#include "strfuncs.h"
-#include "jsgf.h"
+#include <sphinxbase/hash_table.h>
+#include <sphinxbase/glist.h>
+#include <sphinxbase/fsg_model.h>
+#include <sphinxbase/logmath.h>
+#include <sphinxbase/strfuncs.h>
+#include <sphinxbase/jsgf.h>
+
+
+/* Flex uses strdup which is missing on WinCE */
+#if defined(_WIN32) || defined(_WIN32_WCE)
+#define strdup _strdup
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -65,6 +70,7 @@ extern "C" {
 typedef struct jsgf_rhs_s jsgf_rhs_t;
 typedef struct jsgf_atom_s jsgf_atom_t;
 typedef struct jsgf_link_s jsgf_link_t;
+typedef struct jsgf_rule_stack_s jsgf_rule_stack_t;
 
 struct jsgf_s {
     char *version;  /**< JSGF version (from header) */
@@ -83,14 +89,17 @@ struct jsgf_s {
     glist_t rulestack;     /**< Stack of currently expanded rules. */
 };
 
+/* A type to keep track of the stack of rules currently being expanded. */
+struct jsgf_rule_stack_s {
+    jsgf_rule_t *rule;  /**< The rule being expanded */
+    int entry;          /**< The entry-state for this expansion */
+};
+
 struct jsgf_rule_s {
     int refcnt;      /**< Reference count. */
     char *name;      /**< Rule name (NULL for an alternation/grouping) */
-    int public;      /**< Is this rule marked 'public'? */
+    int is_public;   /**< Is this rule marked 'public'? */
     jsgf_rhs_t *rhs; /**< Expansion */
-
-    int entry;       /**< Entry state for current instance of this rule. */
-    int exit;        /**< Exit state for current instance of this rule. */
 };
 
 struct jsgf_rhs_s {
@@ -116,7 +125,7 @@ void jsgf_add_link(jsgf_t *grammar, jsgf_atom_t *atom, int from, int to);
 jsgf_atom_t *jsgf_atom_new(char *name, float weight);
 jsgf_atom_t *jsgf_kleene_new(jsgf_t *jsgf, jsgf_atom_t *atom, int plus);
 jsgf_rule_t *jsgf_optional_new(jsgf_t *jsgf, jsgf_rhs_t *exp);
-jsgf_rule_t *jsgf_define_rule(jsgf_t *jsgf, char *name, jsgf_rhs_t *rhs, int public);
+jsgf_rule_t *jsgf_define_rule(jsgf_t *jsgf, char *name, jsgf_rhs_t *rhs, int is_public);
 jsgf_rule_t *jsgf_import_rule(jsgf_t *jsgf, char *name);
 
 int jsgf_atom_free(jsgf_atom_t *atom);

@@ -50,9 +50,9 @@
 
 #include <stdio.h>
 
-#include "sphinxbase_export.h"
-#include "prim_type.h"
-#include "cmd_ln.h"
+#include <sphinxbase/sphinxbase_export.h>
+#include <sphinxbase/prim_type.h>
+#include <sphinxbase/cmd_ln.h>
 
 typedef struct huff_code_s huff_code_t;
 

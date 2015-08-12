@@ -40,16 +40,6 @@
 #ifndef __CST_ALLOC_H__
 #define __CST_ALLOC_H__
 
-#import <OpenEars/OpenEarsStaticAnalysisToggle.h>
-
-#ifdef SHOW64BITCOMPLAINTS
-#else
-#if __LP64__ // This is only significant for 64-bit compilations -- prefer to keep it limited.
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wshorten-64-to-32" // We are turning off warnings about 64 bit shortening because it isn't harming behavior, but it's reversible for troubleshooting. 
-#endif
-#endif
-
 #ifndef TRUE
 #define TRUE (1==1)
 #endif
@@ -64,7 +54,7 @@ void *cst_safe_realloc(void *p,int size);
 
 /* Allocate on local heap (needed on WinCE for various reasons) */
 #ifdef UNDER_CE
-#include <windows.h>
+#include <windows.h"
 typedef HANDLE cst_alloc_context;
 
 cst_alloc_context new_alloc_context(int size);

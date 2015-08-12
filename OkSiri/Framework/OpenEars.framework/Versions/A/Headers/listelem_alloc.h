@@ -56,8 +56,8 @@ extern "C" {
 #endif
 
 /* Win32/WinCE DLL gunk */
-#include "sphinxbase_export.h"
-#include "prim_type.h"
+#include <sphinxbase/sphinxbase_export.h>
+#include <sphinxbase/prim_type.h>
 
 /**
  * List element allocator object.
@@ -83,7 +83,7 @@ void *__listelem_malloc__(listelem_alloc_t *le, char *file, int line);
 /** 
  * Allocate a list element and return pointer to it.
  */
-#define listelem_malloc(le)	__listelem_malloc__((le),OEFILEMACRO,OELINEMACRO)
+#define listelem_malloc(le)	__listelem_malloc__((le),__FILE__,__LINE__)
 
 SPHINXBASE_EXPORT
 void *__listelem_malloc_id__(listelem_alloc_t *le, char *file, int line,
@@ -92,7 +92,7 @@ void *__listelem_malloc_id__(listelem_alloc_t *le, char *file, int line,
 /**
  * Allocate a list element, returning a unique identifier.
  */
-#define listelem_malloc_id(le, oid)	__listelem_malloc_id__((le),OEFILEMACRO,OELINEMACRO,(oid))
+#define listelem_malloc_id(le, oid)	__listelem_malloc_id__((le),__FILE__,__LINE__,(oid))
 
 /**
  * Retrieve a list element by its identifier.
@@ -109,7 +109,7 @@ void __listelem_free__(listelem_alloc_t *le, void *elem, char *file, int line);
 /** 
  * Macro of __listelem_free__
  */
-#define listelem_free(le,el)	__listelem_free__((le),(el),OEFILEMACRO,OELINEMACRO)
+#define listelem_free(le,el)	__listelem_free__((le),(el),__FILE__,__LINE__)
 
 /**
    Print number of allocation, numer of free operation stats 

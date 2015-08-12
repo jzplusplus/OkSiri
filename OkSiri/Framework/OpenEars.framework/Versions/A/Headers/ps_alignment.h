@@ -45,7 +45,7 @@
 /* System headers. */
 
 /* SphinxBase headers. */
-#include "prim_type.h"
+#include <sphinxbase/prim_type.h>
 
 /* Local headers. */
 #include "dict2pid.h"
@@ -65,6 +65,7 @@ struct ps_alignment_entry_s {
     } id;
     int16 start;
     int16 duration;
+    int32 score;
     uint16 parent;
     uint16 child;
 };

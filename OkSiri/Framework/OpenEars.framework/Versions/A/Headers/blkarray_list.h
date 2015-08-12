@@ -66,7 +66,7 @@
 #define __S2_BLKARRAY_LIST_H__
 
 
-#include "prim_type.h"
+#include <sphinxbase/prim_type.h>
 
 
 /*
@@ -132,5 +132,8 @@ int32 blkarray_list_append (blkarray_list_t *, void *data);
  */
 void blkarray_list_reset (blkarray_list_t *);
 
+
+/* Gets n-th element of the array list */
+void * blkarray_list_get(blkarray_list_t *, int32 n);
 
 #endif

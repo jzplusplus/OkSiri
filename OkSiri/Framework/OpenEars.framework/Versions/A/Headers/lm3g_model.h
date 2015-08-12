@@ -36,7 +36,7 @@
  */
 /*
  * \file lm3g_model.h Core Sphinx 3-gram code used in
- * DMP/DMP32/ARPA (for now) model code.
+ * DMP/ARPA (for now) model code.
  *
  * Author: A cast of thousands, probably.
  */
@@ -44,7 +44,7 @@
 #ifndef __NGRAM_MODEL_LM3G_H__
 #define __NGRAM_MODEL_LM3G_H__
 
-#include "listelem_alloc.h"
+#include "sphinxbase/listelem_alloc.h"
 
 #include "ngram_model_internal.h"
 

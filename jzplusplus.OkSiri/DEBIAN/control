@@ -1,0 +1,17 @@
+Package: jzplusplus.OkSiri
+Name: OkSiri
+Version: 1.0-1
+Description: Beta release for OkSiri 
+Section: System
+Depends: firmware (>= 7.0), mobilesubstrate, preferenceloader, libstatusbar, com.a3tweaks.flipswitch
+Conflicts: 
+Replaces: org.thebigboss.oksiri 
+Priority: optional
+Architecture: iphoneos-arm
+Author: Jay Zuerndorfer
+dev: 
+Homepage: https://github.com/jzplusplus/OkSiri
+Depiction: 
+Maintainer: 
+Icon: 
+

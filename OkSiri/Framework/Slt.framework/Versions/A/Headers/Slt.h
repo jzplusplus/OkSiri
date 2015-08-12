@@ -6,10 +6,8 @@
 //  Copyright (c) 2012 Politepix. All rights reserved.
 //
 
-#import <OpenEars/FliteVoice.h>
+#import <OpenEars/OEFliteVoice.h>
 
-@interface Slt : FliteVoice {
-    
-}
+@interface Slt : OEFliteVoice
 
 @end

@@ -43,11 +43,11 @@
 #define __PS_LATTICE_H__
 
 /* SphinxBase headers. */
-#include "prim_type.h"
-#include "ngram_model.h"
+#include <sphinxbase/prim_type.h>
+#include <sphinxbase/ngram_model.h>
 
 /* PocketSphinx headers. */
-#include "pocketsphinx_export.h"
+#include <pocketsphinx_export.h>
 
 /**
  * Word graph structure used in bestpath/nbest search.

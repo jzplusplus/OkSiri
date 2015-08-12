@@ -118,7 +118,7 @@
 #include <stdio.h>
 
 /* Win32/WinCE DLL gunk */
-#include "sphinxbase_export.h"
+#include <sphinxbase/sphinxbase_export.h>
 
 /** \file genrand.h
  *\brief High performance prortable random generator created by Takuji

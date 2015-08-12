@@ -43,9 +43,9 @@
 #define __S2_SEMI_MGAU_H__
 
 /* SphinxBase headesr. */
-#include "fe.h"
-#include "logmath.h"
-#include "mmio.h"
+#include <sphinxbase/fe.h>
+#include <sphinxbase/logmath.h>
+#include <sphinxbase/mmio.h>
 
 /* Local headers. */
 #include "acmod.h"
@@ -61,17 +61,11 @@ struct s2_semi_mgau_s {
     cmd_ln_t *config;   /* configuration parameters */
 
     gauden_t *g;        /* Set of Gaussians (pointers below point in here and will go away soon) */
-    mfcc_t  ***means;	/* mean vectors foreach feature, density */
-    mfcc_t  ***vars;	/* inverse var vectors foreach feature, density */
-    mfcc_t  **dets;	/* det values foreach cb, feature */
 
     uint8 ***mixw;     /* mixture weight distributions */
     mmio_file_t *sendump_mmap;/* memory map for mixw (or NULL if not mmap) */
 
     uint8 *mixw_cb;    /* mixture weight codebook, if any (assume it contains 16 values) */
-    int32 *veclen;	/* Length of feature streams */
-    int16 n_feat;	/* Number of feature streams */
-    int16 n_density;	/* Number of mixtures per codebook */
     int32 n_sen;	/* Number of senones */
     uint8 *topn_beam;   /* Beam for determining per-frame top-N densities */
     int16 max_topn;

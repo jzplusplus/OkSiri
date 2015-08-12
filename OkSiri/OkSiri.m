@@ -20,21 +20,21 @@
 #import <notify.h>
 #import "LSStatusBarItem.h"
 
-#import <OpenEars/LanguageModelGenerator.h>
-#import <OpenEars/AcousticModel.h>
-#import <OpenEars/PocketsphinxController.h>
-#import <OpenEars/OpenEarsEventsObserver.h>
-#import <OpenEars/OpenEarsLogging.h>
-#import <OpenEars/AudioSessionManager.h>
+#import <OpenEars/OELanguageModelGenerator.h>
+#import <OpenEars/OEAcousticModel.h>
+#import <OpenEars/OEPocketsphinxController.h>
+#import <OpenEars/OEEventsObserver.h>
+#import <OpenEars/OELogging.h>
+//#import <OpenEars/AudioSessionManager.h>
 
 #define ACOUSTIC_MODEL_PATH     @"/Library/OpenEars/AcousticModelEnglish.bundle"
 #define DEFAULT_KEYWORD         @"OK SIRI"
 #define DEFAULT_SENSITIVITY     5000
 
 
-@interface OkSiri : NSObject<LAListener, LAEventDataSource, OpenEarsEventsObserverDelegate> {
-    PocketsphinxController *pocketsphinxController;
-    OpenEarsEventsObserver *openEarsEventsObserver;
+@interface OkSiri : NSObject<LAListener, LAEventDataSource, OEEventsObserverDelegate> {
+    OEPocketsphinxController *pocketsphinxController;
+    OEEventsObserver *openEarsEventsObserver;
     NSString *keyword;
     int sensitivity;
     LSStatusBarItem *statusBarItem;
@@ -44,12 +44,12 @@
     - (void)stopRecognition;
     - (void)stopRecognitionTemporarily;
 
-    @property (strong, nonatomic) PocketsphinxController *pocketsphinxController;
-    @property (strong, nonatomic) OpenEarsEventsObserver *openEarsEventsObserver;
+    @property (strong, nonatomic) OEPocketsphinxController *pocketsphinxController;
+    @property (strong, nonatomic) OEEventsObserver *openEarsEventsObserver;
     @property (strong, nonatomic) NSString *keyword;
     @property (nonatomic) int sensitivity;
     @property (strong, nonatomic) LSStatusBarItem *statusBarItem;
-    @property (strong, nonatomic) NSDictionary *languageGeneratorResults;
+    @property (strong, nonatomic) OELanguageModelGenerator *languageGeneratorResults;
 
 @end
 
@@ -131,15 +131,15 @@ static void new_didSuspend(SBApplication* self, SEL _cmd) {
 @synthesize statusBarItem;
 @synthesize languageGeneratorResults;
 
-- (PocketsphinxController *)pocketsphinxController {
+- (OEPocketsphinxController *)pocketsphinxController {
 	if (pocketsphinxController == nil) {
-		pocketsphinxController = [[PocketsphinxController alloc] init];
+		pocketsphinxController = [OEPocketsphinxController sharedInstance];
 	}
 	return pocketsphinxController;
 }
-- (OpenEarsEventsObserver *)openEarsEventsObserver {
+- (OEEventsObserver *)openEarsEventsObserver {
 	if (openEarsEventsObserver == nil) {
-		openEarsEventsObserver = [[OpenEarsEventsObserver alloc] init];
+		openEarsEventsObserver = [[OEEventsObserver alloc] init];
 	}
 	return openEarsEventsObserver;
 }
@@ -157,9 +157,9 @@ static void new_didSuspend(SBApplication* self, SEL _cmd) {
 
 }
 
-- (NSDictionary *)generateLanguageModel
+- (void)generateLanguageModel
 {
-    LanguageModelGenerator *lmGenerator = [[LanguageModelGenerator alloc] init];
+    OELanguageModelGenerator *lmGenerator = [[OELanguageModelGenerator alloc] init];
     [lmGenerator setVerboseLanguageModelGenerator:YES];
     
     //keyword, plus the most common 500 words (makes recognition less likely to false positive)
@@ -172,7 +172,7 @@ static void new_didSuspend(SBApplication* self, SEL _cmd) {
     if([err code] == noErr)
     {
         
-        self.languageGeneratorResults = [err userInfo];
+        self.languageGeneratorResults = lmGenerator;
     }
     else
     {
@@ -185,6 +185,9 @@ static void new_didSuspend(SBApplication* self, SEL _cmd) {
     NSLog(@"Starting OkSiri");
     
     if([self.pocketsphinxController isListening]) return;
+    
+    [self.pocketsphinxController setActive:TRUE error:nil];
+    self.pocketsphinxController.audioMode = @"VoiceChat";
     
     NSDictionary* plist = [NSDictionary dictionaryWithContentsOfFile:[NSHomeDirectory() stringByAppendingPathComponent:@"/Library/Preferences/jzplusplus.OkSiri.plist"]];
     
@@ -229,8 +232,8 @@ static void new_didSuspend(SBApplication* self, SEL _cmd) {
     
     if(self.languageGeneratorResults == nil) [self generateLanguageModel];
 
-    NSString *lmPath = [languageGeneratorResults objectForKey:@"LMPath"];
-    NSString *dicPath = [languageGeneratorResults objectForKey:@"DictionaryPath"];
+    NSString *lmPath = [languageGeneratorResults pathToSuccessfullyGeneratedLanguageModelWithRequestedName:@"oksiri.languagemodel"];
+    NSString *dicPath = [languageGeneratorResults pathToSuccessfullyGeneratedDictionaryWithRequestedName:@"oksiri.languagemodel"];
     
     [self.openEarsEventsObserver setDelegate:self];
     
@@ -258,19 +261,19 @@ static void new_didSuspend(SBApplication* self, SEL _cmd) {
 //    [self performSelector:@selector(reconfigureAudio) withObject:nil afterDelay: 1.0];
 }
 
-- (void)reconfigureAudio
-{
-    NSError *setCategoryError = nil;
-    BOOL success = [[AVAudioSession sharedInstance]
-                    setCategory: AVAudioSessionCategoryAmbient
-                    error: &setCategoryError];
-    
-    if (!success) {
-        NSLog(@"Audio Session Error");
-    }
-    NSLog(@"Audio Session Reconfigured");
-    
-}
+//- (void)reconfigureAudio
+//{
+//    NSError *setCategoryError = nil;
+//    BOOL success = [[AVAudioSession sharedInstance]
+//                    setCategory: AVAudioSessionCategoryAmbient
+//                    error: &setCategoryError];
+//    
+//    if (!success) {
+//        NSLog(@"Audio Session Error");
+//    }
+//    NSLog(@"Audio Session Reconfigured");
+//    
+//}
 
 - (NSString *)localizedGroupForEventName:(NSString *)eventName {
     return @"OkSiri";
@@ -407,13 +410,6 @@ static void new_didSuspend(SBApplication* self, SEL _cmd) {
     }
 }
 
-- (void) pocketsphinxDidStartCalibration {
-	NSLog(@"Pocketsphinx calibration has started.");
-}
-
-- (void) pocketsphinxDidCompleteCalibration {
-	NSLog(@"Pocketsphinx calibration is complete.");
-}
 
 - (void) pocketsphinxDidStartListening {
 	NSLog(@"Pocketsphinx is now listening.");
@@ -444,13 +440,22 @@ static void new_didSuspend(SBApplication* self, SEL _cmd) {
 	NSLog(@"Pocketsphinx is now using the following language model: \n%@ and the following dictionary: %@",newLanguageModelPathAsString,newDictionaryPathAsString);
 }
 
-- (void) pocketSphinxContinuousSetupDidFail { // This can let you know that something went wrong with the recognition loop startup. Turn on OPENEARSLOGGING to learn why.
-	NSLog(@"Setting up the continuous recognition loop has failed for some reason.");
+- (void) pocketSphinxContinuousSetupDidFailWithReason:(NSString *)reasonForFailure { 	NSLog(@"Setting up the continuous recognition loop has failed for the following reason:");
+    NSLog(@"%@", reasonForFailure);
     
     [self performSelector:@selector(startRecognition) withObject:self afterDelay:2];
 }
+
+- (void) pocketSphinxContinuousTeardownDidFailWithReason:(NSString *)reasonForFailure { 	NSLog(@"Tearing down the continuous recognition loop has failed for the following reason:");
+    NSLog(@"%@", reasonForFailure);
+}
+
 - (void) testRecognitionCompleted {
 	NSLog(@"A test file that was submitted for recognition is now complete.");
+}
+
+- (void) pocketsphinxFailedNoMicPermissions {
+    NSLog(@"Pocketsphinx failed because of mic permissions.");
 }
 
 - (void) audioSessionInterruptionDidBegin {

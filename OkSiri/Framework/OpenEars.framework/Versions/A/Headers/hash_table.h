@@ -125,9 +125,9 @@
 #define _LIBUTIL_HASH_H_
 
 /* Win32/WinCE DLL gunk */
-#include "sphinxbase_export.h"
-#include "prim_type.h"
-#include "glist.h"
+#include <sphinxbase/sphinxbase_export.h>
+#include <sphinxbase/prim_type.h>
+#include <sphinxbase/glist.h>
 
 #ifdef __cplusplus
 extern "C" {

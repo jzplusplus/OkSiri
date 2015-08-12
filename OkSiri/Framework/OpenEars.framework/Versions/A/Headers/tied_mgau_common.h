@@ -43,8 +43,8 @@
 #ifndef __TIED_MGAU_COMMON_H__
 #define __TIED_MGAU_COMMON_H__
 
-#include "logmath.h"
-#include "fixpoint.h"
+#include <sphinxbase/logmath.h>
+#include <sphinxbase/fixpoint.h>
 
 #define MGAU_MIXW_VERSION	"1.0"   /* Sphinx-3 file format version for mixw */
 #define MGAU_PARAM_VERSION	"1.0"   /* Sphinx-3 file format version for mean/var */
@@ -68,15 +68,13 @@
 #endif
 
 
-//#if defined(__STDC_VERSION__) && (__STDC_VERSION__ == 199901L)
-//#define LOGMATH_INLINE inline
-//#elif defined(__GNUC__)
+#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)
 #define LOGMATH_INLINE static inline
-//#elif defined(_MSC_VER)
-//#define LOGMATH_INLINE __inline
-//#else
-//#define LOGMATH_INLINE static
-//#endif
+#elif defined(_MSC_VER)
+#define LOGMATH_INLINE __inline
+#else
+#define LOGMATH_INLINE static
+#endif
 
 /* Allocate 0..159 for negated quantized mixture weights and 0..96 for
  * negated normalized acoustic scores, so that the combination of the

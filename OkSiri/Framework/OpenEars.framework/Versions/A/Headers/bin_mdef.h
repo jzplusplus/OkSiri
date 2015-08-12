@@ -47,14 +47,11 @@
 
 #ifdef __cplusplus
 extern "C" {
-#if 0
-}; /* Fool Emacs */
-#endif
 #endif /* __cplusplus */
 
 /* SphinxBase headers. */
-#include "mmio.h"
-#include "cmd_ln.h"
+#include <sphinxbase/mmio.h>
+#include <sphinxbase/cmd_ln.h>
 #include <pocketsphinx_export.h>
 
 #include "mdef.h"
@@ -64,9 +61,9 @@ extern "C" {
 #define BIN_MDEF_NATIVE_ENDIAN 0x46444d42 /* 'BMDF' in little-endian order */
 #define BIN_MDEF_OTHER_ENDIAN 0x424d4446  /* 'BMDF' in big-endian order */
 #ifdef __GNUC__
-#define ATTRIBUTE_PACKED_LOCAL __attribute__((packed))
+#define __ATTRIBUTE_PACKED __attribute__((packed))
 #else
-#define ATTRIBUTE_PACKED_LOCAL
+#define __ATTRIBUTE_PACKED
 #endif
 
 /**
@@ -89,7 +86,7 @@ struct mdef_entry_s {
 			uint8 ctx[3]; /**< quintphones will require hacking */
 		} cd;
 	} info;
-} ATTRIBUTE_PACKED_LOCAL;
+} __ATTRIBUTE_PACKED;
 
 /**
  * Invalid senone sequence ID (limited to 16 bits for PocketSphinx).

@@ -88,8 +88,8 @@
 #endif
 
 /* Win32/WinCE DLL gunk */
-#include "sphinxbase_export.h"
-#include "prim_type.h"
+#include <sphinxbase/sphinxbase_export.h>
+#include <sphinxbase/prim_type.h>
 
 /** \file pio.h
  * \brief file IO related operations.  
@@ -144,8 +144,8 @@ FILE *fopen_compchk (const char *file,	/**< In: File to be opened */
  */
 SPHINXBASE_EXPORT
 FILE *_myfopen(const char *file, const char *mode,
-	       const char *pgm, int32 line);	/* In: OEFILEMACRO, OELINEMACRO from where called */
-#define myfopen(file,mode)	_myfopen((file),(mode),OEFILEMACRO,OELINEMACRO)
+	       const char *pgm, int32 line);	/* In: __FILE__, __LINE__ from where called */
+#define myfopen(file,mode)	_myfopen((file),(mode),__FILE__,__LINE__)
 
 
 /**
@@ -175,12 +175,12 @@ char *fread_line(FILE *stream, size_t *out_len);
  * Line iterator for files.
  */
 typedef struct lineiter_t {
-	char *buf;
-	size_t bsiz;
-	size_t len;
-	FILE *fh;
-	int32 clean;
-	int32 lineno;
+    char *buf;
+    FILE *fh;
+    int32 bsiz;
+    int32 len;
+    int32 clean;
+    int32 lineno;
 } lineiter_t;
 
 /**

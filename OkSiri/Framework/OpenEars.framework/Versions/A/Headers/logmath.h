@@ -72,9 +72,9 @@
 #ifndef __LOGMATH_H__
 #define __LOGMATH_H__
 
-#include "sphinxbase_export.h"
-#include "prim_type.h"
-#include "cmd_ln.h"
+#include <sphinxbase/sphinxbase_export.h>
+#include <sphinxbase/prim_type.h>
+#include <sphinxbase/cmd_ln.h>
 
 
 #ifdef __cplusplus

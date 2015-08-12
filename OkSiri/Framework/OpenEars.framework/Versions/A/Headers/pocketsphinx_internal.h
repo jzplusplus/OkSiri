@@ -45,11 +45,12 @@
 #define __POCKETSPHINX_INTERNAL_H__
 
 /* SphinxBase headers. */
-#include "cmd_ln.h"
-#include "logmath.h"
-#include "fe.h"
-#include "feat.h"
-#include "profile.h"
+#include <sphinxbase/cmd_ln.h>
+#include <sphinxbase/fe.h>
+#include <sphinxbase/feat.h>
+#include <sphinxbase/hash_table.h>
+#include <sphinxbase/logmath.h>
+#include <sphinxbase/profile.h>
 
 /* Local headers. */
 #include "pocketsphinx.h"
@@ -62,12 +63,23 @@
  */
 typedef struct ps_search_s ps_search_t;
 
+
+/* Search names*/
+#define PS_DEFAULT_SEARCH  "_default"
+#define PS_DEFAULT_PL_SEARCH  "_default_pl"
+
+/* Search types */
+#define PS_SEARCH_TYPE_KWS    "kws"
+#define PS_SEARCH_TYPE_FSG    "fsg"
+#define PS_SEARCH_TYPE_NGRAM  "ngram"
+#define PS_SEARCH_TYPE_ALLPHONE  "allphone"
+#define PS_SEARCH_TYPE_STATE_ALIGN  "state_align"
+#define PS_SEARCH_TYPE_PHONE_LOOP  "phone_loop"
+
 /**
  * V-table for search algorithm.
  */
 typedef struct ps_searchfuncs_s {
-    char const *name;
-
     int (*start)(ps_search_t *search);
     int (*step)(ps_search_t *search, int frame_idx);
     int (*finish)(ps_search_t *search);
@@ -85,6 +97,10 @@ typedef struct ps_searchfuncs_s {
  */
 struct ps_search_s {
     ps_searchfuncs_t *vt;  /**< V-table of search methods. */
+    
+    char *type;
+    char *name;
+    
     ps_search_t *pls;      /**< Phoneme loop for lookahead. */
     cmd_ln_t *config;      /**< Configuration. */
     acmod_t *acmod;        /**< Acoustic model. */
@@ -101,6 +117,10 @@ struct ps_search_s {
     int32 start_wid;       /**< Start word ID. */
     int32 silence_wid;     /**< Silence word ID. */
     int32 finish_wid;      /**< Finish word ID. */
+    
+    int8 done;
+    int8 inprogress;
+    
 };
 
 #define ps_search_base(s) ((ps_search_t *)s)
@@ -114,7 +134,8 @@ struct ps_search_s {
 #define ps_search_lookahead(s) ps_search_base(s)->pls
 #define ps_search_n_words(s) ps_search_base(s)->n_words
 
-#define ps_search_name(s) ps_search_base(s)->vt->name
+#define ps_search_type(s) ps_search_base(s)->type
+#define ps_search_name(s) ps_search_base(s)->name
 #define ps_search_start(s) (*(ps_search_base(s)->vt->start))(s)
 #define ps_search_step(s,i) (*(ps_search_base(s)->vt->step))(s,i)
 #define ps_search_finish(s) (*(ps_search_base(s)->vt->finish))(s)
@@ -134,19 +155,21 @@ struct ps_search_s {
  * Initialize base structure.
  */
 void ps_search_init(ps_search_t *search, ps_searchfuncs_t *vt,
+		    const char *type, const char *name,
                     cmd_ln_t *config, acmod_t *acmod, dict_t *dict,
                     dict2pid_t *d2p);
+
+
+/**
+ * Free search
+ */
+void ps_search_base_free(ps_search_t *search);
 
 /**
  * Re-initialize base structure with new dictionary.
  */
 void ps_search_base_reinit(ps_search_t *search, dict_t *dict,
                            dict2pid_t *d2p);
-
-/**
- * De-initialize base structure.
- */
-void ps_search_deinit(ps_search_t *search);
 
 typedef struct ps_segfuncs_s {
     ps_seg_t *(*seg_next)(ps_seg_t *seg);
@@ -191,7 +214,7 @@ struct ps_decoder_s {
     logmath_t *lmath;  /**< Log math computation. */
 
     /* Search modules. */
-    glist_t searches;        /**< List of search modules. */
+    hash_table_t *searches;        /**< Set of search modules. */
     /* TODO: Convert this to a stack of searches each with their own
      * lookahead value. */
     ps_search_t *search;     /**< Currently active search module. */
@@ -200,12 +223,16 @@ struct ps_decoder_s {
 
     /* Utterance-processing related stuff. */
     uint32 uttno;       /**< Utterance counter. */
-    char *uttid;        /**< Utterance ID for current utterance. */
     ptmr_t perf;        /**< Performance counter for all of decoding. */
     uint32 n_frame;     /**< Total number of frames processed. */
     char const *mfclogdir; /**< Log directory for MFCC files. */
     char const *rawlogdir; /**< Log directory for audio files. */
     char const *senlogdir; /**< Log directory for senone score files. */
+};
+
+
+struct ps_search_iter_s {
+    hash_iter_t itor;
 };
 
 #endif /* __POCKETSPHINX_INTERNAL_H__ */

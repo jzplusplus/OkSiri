@@ -43,7 +43,7 @@
 #ifndef __NGRAM_MODEL_DMP_H__
 #define __NGRAM_MODEL_DMP_H__
 
-#include "mmio.h"
+#include "sphinxbase/mmio.h"
 
 #include "ngram_model_internal.h"
 #include "lm3g_model.h"

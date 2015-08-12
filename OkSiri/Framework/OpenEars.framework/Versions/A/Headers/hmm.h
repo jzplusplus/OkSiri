@@ -46,8 +46,8 @@
 #include <stdio.h>
 
 /* SphinxBase headers. */
-#include "fixpoint.h"
-#include "listelem_alloc.h"
+#include <sphinxbase/fixpoint.h>
+#include <sphinxbase/listelem_alloc.h>
 
 /* PocketSphinx headers. */
 #include "bin_mdef.h"
@@ -55,15 +55,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#if 0
-} /* Fool Emacs into not indenting things. */
-#endif
 
 /** 
  * Type for frame index values. Used in HMM indexes and 
- * backpointers and affects memory required. Make it int32 to be able to 
- * process longer utterances. Due to limitations of FSG search implementation
- * this value needs to be signed.
+ * backpointers and affects memory required.Due to limitations of FSG
+ * search implementation this value needs to be signed.
  */
 typedef int32 frame_idx_t;
 
@@ -303,9 +299,6 @@ void hmm_dump(hmm_t *h,  /**< In/Out: HMM being updated */
     );
 
 
-#if 0
-{ /* Stop indent from complaining */
-#endif
 #ifdef __cplusplus
 }
 #endif

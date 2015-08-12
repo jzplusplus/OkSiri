@@ -46,11 +46,11 @@
 #include <stdarg.h>
 
 /* Win32/WinCE DLL gunk */
-#include "sphinxbase_export.h"
-#include "prim_type.h"
-#include "cmd_ln.h"
-#include "logmath.h"
-#include "mmio.h"
+#include <sphinxbase/sphinxbase_export.h>
+#include <sphinxbase/prim_type.h>
+#include <sphinxbase/cmd_ln.h>
+#include <sphinxbase/logmath.h>
+#include <sphinxbase/mmio.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -158,25 +158,6 @@ ngram_model_t *ngram_model_retain(ngram_model_t *model);
  */
 SPHINXBASE_EXPORT
 int ngram_model_free(ngram_model_t *model);
-
-/**
- * Re-encode word strings in an N-Gram model.
- *
- * Character set names are the same as those passed to iconv(1).  If
- * your system does not have iconv, this function may fail.  Also,
- * because all file formats consist of 8-bit character streams,
- * attempting to convert to or from UTF-16 (or any other encoding
- * which contains null bytes) is a recipe for total desaster.
- *
- * We have no interest in supporting UTF-16, so don't ask.
- *
- * Note that this does not affect any pronunciation dictionary you
- * might currently be using in conjunction with this N-Gram model, so
- * the effect of calling this during decoding is undefined.  That's a
- * bug!
- */
-SPHINXBASE_EXPORT
-int ngram_model_recode(ngram_model_t *model, const char *from, const char *to);
 
 /**
  * Constants for case folding.
@@ -291,7 +272,20 @@ int32 ngram_ng_score(ngram_model_t *model, int32 wid, int32 *history,
  * unigram weight (interpolation with uniform) is not removed.
  */
 SPHINXBASE_EXPORT
-int32 ngram_prob(ngram_model_t *model, const char *word, ...);
+int32 ngram_probv(ngram_model_t *model, const char *word, ...);
+
+/**
+ * Get the "raw" log-probability for a general N-Gram.
+ *
+ * This returns the log-probability of an N-Gram, as defined in the
+ * language model file, before any language weighting, interpolation,
+ * or insertion penalty has been applied.
+ *
+ * @note When backing off to a unigram from a bigram or trigram, the
+ * unigram weight (interpolation with uniform) is not removed.
+ */
+SPHINXBASE_EXPORT
+int32 ngram_prob(ngram_model_t *model, const char *const *words, int32 n);
 
 /**
  * Quick "raw" probability lookup for a general N-Gram.
@@ -445,7 +439,7 @@ int32 ngram_model_add_word(ngram_model_t *model,
  *
  * This function assumes that the class tags have already been defined
  * as unigrams in the language model.  All words in the class
- * definition will be added to the lexicon as special in-class words.
+ * definition will be added to the vocabulary as special in-class words.
  * For this reason is is necessary that they not have the same names
  * as any words in the general unigram distribution.  The convention
  * is to suffix them with ":class_tag", where class_tag is the class

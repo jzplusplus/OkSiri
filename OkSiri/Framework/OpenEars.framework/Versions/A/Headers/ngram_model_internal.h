@@ -43,8 +43,8 @@
 #ifndef __NGRAM_MODEL_INTERNAL_H__
 #define __NGRAM_MODEL_INTERNAL_H__
 
-#include "ngram_model.h"
-#include "hash_table.h"
+#include "sphinxbase/ngram_model.h"
+#include "sphinxbase/hash_table.h"
 
 /**
  * Common implementation of ngram_model_t.
@@ -227,12 +227,6 @@ ngram_model_t *ngram_model_arpa_read(cmd_ln_t *config,
 ngram_model_t *ngram_model_dmp_read(cmd_ln_t *config,
 				    const char *file_name,
 				    logmath_t *lmath);
-/**
- * Read an N-Gram model from a Sphinx .DMP32 binary file.
- */
-ngram_model_t *ngram_model_dmp32_read(cmd_ln_t *config,
-				     const char *file_name,
-				     logmath_t *lmath);
 
 /**
  * Write an N-Gram model to an ARPABO text file.

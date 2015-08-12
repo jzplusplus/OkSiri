@@ -51,9 +51,9 @@
  */
 
 /* SphinxBase headers. */
-#include "feat.h"
-#include "logmath.h"
-#include "cmd_ln.h"
+#include <sphinxbase/feat.h>
+#include <sphinxbase/logmath.h>
+#include <sphinxbase/cmd_ln.h>
 
 /* Local headers. */
 #include "vector.h"
@@ -62,9 +62,6 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif
-#if 0
-} /* Fool Emacs into not indenting things. */
 #endif
 
 /**
@@ -146,9 +143,6 @@ void gauden_dump_ind (const gauden_t *g,  /**< In: Gaussian distribution g*/
 		      int senidx          /**< In: The senone index of the Gaussian */
     );
 
-#if 0
-{ /* Stop indent from complaining */
-#endif
 #ifdef __cplusplus
 }
 #endif

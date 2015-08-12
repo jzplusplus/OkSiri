@@ -1,12 +1,3 @@
-#import <OpenEars/OpenEarsStaticAnalysisToggle.h>
-
-#ifdef SHOW64BITCOMPLAINTS
-#else
-#if __LP64__ // This is only significant for 64-bit compilations -- prefer to keep it limited.
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wshorten-64-to-32" // We are turning off warnings about 64 bit shortening because it isn't harming behavior, but it's reversible for troubleshooting. 
-#endif
-#endif
 
 /* include/config.h.  Generated from config.h.in by configure.  */
 /* include/config.h.in.  Generated from configure.in by autoheader.  */
@@ -39,6 +30,7 @@
 /* #undef FIXED16 */
 
 /* Use fixed-point computation */
+#define FIXED_POINT 1
 /* #undef FIXED_POINT */
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
@@ -115,19 +107,19 @@
 
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
  */
-#define LT_OBJDIR ".libs/"
+//#define LT_OBJDIR ".libs/"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT ""
+//#define PACKAGE_BUGREPORT ""
 
 /* Define to the full name of this package. */
-#define PACKAGE_NAME "sphinxbase"
+//#define PACKAGE_NAME "sphinxbase"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "sphinxbase 0.7"
+//#define PACKAGE_STRING "sphinxbase 0.7"
 
 /* Define to the one symbol short name of this package. */
-#define PACKAGE_TARNAME "sphinxbase"
+//#define PACKAGE_TARNAME "sphinxbase"
 
 /* Define to the home page for this package. */
 #define PACKAGE_URL ""
@@ -137,13 +129,19 @@
 
 /* Define as the return type of signal handlers (`int' or `void'). */
 #define RETSIGTYPE void
+#if __LP64__
+/* The size of `long', as computed by sizeof. */
+#define SIZEOF_LONG 8
 
+/* The size of `long long', as computed by sizeof. */
+#define SIZEOF_LONG_LONG 8
+#else
 /* The size of `long', as computed by sizeof. */
 #define SIZEOF_LONG 4
 
 /* The size of `long long', as computed by sizeof. */
 #define SIZEOF_LONG_LONG 8
-
+#endif
 /* Enable debugging output */
 //#define SPHINX_DEBUG 
 
@@ -155,15 +153,15 @@
 
 /* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
  significant byte first (like Motorola and SPARC, unlike Intel). */
-#if defined AC_APPLE_UNIVERSAL_BUILD
-# if defined __BIG_ENDIAN__
-#  define WORDS_BIGENDIAN 1
-# endif
-#else
-# ifndef WORDS_BIGENDIAN
+//#if defined AC_APPLE_UNIVERSAL_BUILD
+//# if defined __BIG_ENDIAN__
+//#  define WORDS_BIGENDIAN 1
+//# endif
+//#else
+//# ifndef WORDS_BIGENDIAN
 /* #  undef WORDS_BIGENDIAN */
-# endif
-#endif
+//# endif
+//#endif
 
 
 
